@@ -1,0 +1,10 @@
+.main-header{
+  font-size: 40px;
+  margin-left: 43%;
+}
+.box {
+  width: 1200px;
+  margin-left: 4.5rem;
+  height: 700px;
+  border: 1px solid black;
+}

@@ -1,0 +1,11 @@
+------------BODY OF THE TABLE FARA AUTH------------- 
+<tbody>
+                        {categ2?.map(categ2 =><tr key ={categ2.id}>
+                            {/* <td>
+                                {buttons(`categ2/edit/${categ2.id}`, categ2.id)}
+                            </td> */}
+                            <td>
+                                {categ2.name}
+                            </td>
+                        </tr>)}
+                    </tbody>
