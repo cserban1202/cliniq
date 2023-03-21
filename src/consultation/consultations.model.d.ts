@@ -1,4 +1,5 @@
 interface consultationCreationDTO {
+    email: string;
     name: string;
     wantedDate: date;
     picture?: File;

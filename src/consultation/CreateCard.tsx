@@ -27,10 +27,10 @@ export default function CreateCard() {
       <>
         <h3>Ask for a consultation</h3>
         <ConsultationForm 
-          model={{name: '', wantedDate: undefined, time: ''}}
+          model={{email: '', name: '', wantedDate: undefined, time: ''}}
           onSubmit={async (values, actions, time) => {
             const category = { ...values, time };
-           await create(category);
+           //await create(category);
             console.log(category);
           }}
           
