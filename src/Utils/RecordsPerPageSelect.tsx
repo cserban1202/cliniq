@@ -1,3 +1,5 @@
+import React from "react"
+
 export default function RecordsPerPageSelect(props: recordsPerPageSelectProps){
     return(
         <div className="mb-3" style={{width: '350px'}}>

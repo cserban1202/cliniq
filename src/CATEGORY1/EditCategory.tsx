@@ -8,6 +8,7 @@ import { categoriesDTO } from "./categories.model";
 import CategoriesForm from "./CategoriesForm";
 import EditEntity from "../Utils/EditEntity";
 import { categoriesCreationDTO } from "./categories.model";
+import React from "react";
 
 export default function EditCategory() {
     

@@ -3,6 +3,7 @@ import IndividualCard from "./IndividualCard";
 import css from './CardList.module.css';
 import Loading from "../Utils/Loading";
 import GenericList from "../Utils/GenericList";
+import React from "react";
 
 export default function CardList(props: cardListprops) {
 

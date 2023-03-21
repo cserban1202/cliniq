@@ -1,10 +1,12 @@
 import axios from "axios";
+import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { urlCategories } from "../endpoints";
 import DisplayErrors from "../Utils/DisplayErrors";
 import { categoriesCreationDTO } from "./categories.model";
 import CategoriesForm from "./CategoriesForm";
+import  "./style.css"
 
 
 export default function CreateCategory() {
@@ -24,16 +26,16 @@ export default function CreateCategory() {
         }
     }
     return (
-        <>
+        <div className="container-xl mt-5 paddingBottom">
             <h3>We'd love to listen</h3> 
             <DisplayErrors errors={errors} />
             <CategoriesForm model={{name:''}}
             onSubmit = {async value => {
                await create(value);
-               //console.log(value)
+               console.log(value)
             }}
             />
-        </>
+        </div>
     )
 }
 /*

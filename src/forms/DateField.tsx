@@ -24,4 +24,5 @@ export default function DateField(props: dateFieldProps){
 interface dateFieldProps{
     field: string;
     displayName: string;
+    transform?(value: any): string;
 }

@@ -7,12 +7,14 @@ import './Card.css';
 import { Form } from "react-bootstrap";
 import { InputGroup } from "react-bootstrap";
 import {categ3DTO } from "./categ3.model";
+import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
+import React from 'react'
 
 
 export default function IndexCategory3() {
 
     const [search, setSearch] = useState('');
-
+    const [showPDF, setShowPDF] = useState(false);
 
     const [categ3, setCateg3] = useState<categ3DTO[]>();
 
@@ -23,6 +25,29 @@ export default function IndexCategory3() {
                 console.log(response.data);
             })
     }, [])
+
+    // Function to generate CSV file from table data
+    const exportTable = () => {
+        const csvRows = [];
+        const headers = ['Category', 'Type', 'Price'];
+        csvRows.push(headers.join(','));
+        categ3?.forEach(row => {
+          const values = [
+            row.category,
+            row.type,
+            row.price.toString(),
+          ];
+          csvRows.push(values.join(','));
+        });
+        const csvData = csvRows.join('\n');
+        const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', 'categ3.csv');
+        link.click();
+    };
+
     return (
         <>
             <h3>Categ 3 - LISTE DE PRETURI</h3>
@@ -32,6 +57,9 @@ export default function IndexCategory3() {
                         placeholder="Search" />
                     </InputGroup>
                 </Form>
+                <div className="d-flex justify-content-between align-items-center">
+                    <button className="btn btn-primary" onClick={exportTable}>Export Table</button>
+                </div>
                <GenericList list={categ3}>
                     <table className="table">
                         
@@ -59,8 +87,3 @@ export default function IndexCategory3() {
         </>
     )
 }
-
-
-//TITLE FOR PAGE 1 - CATEG 1 => SHOULD BE CHANGED TO THE ACTUAL NAME!!!!!!!!!!!!!
-
-// CATEGORY 2 =  ACTORS

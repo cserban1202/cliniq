@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { ReactElement } from "react-markdown/lib/react-markdown";
 import AuthenticationContext from "./AuthenticationContext";

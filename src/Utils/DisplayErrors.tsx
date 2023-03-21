@@ -1,3 +1,4 @@
+import React from "react";
 
 export default function DisplayErrors(props: displayErrorProps){
     const style ={ color:"red"};

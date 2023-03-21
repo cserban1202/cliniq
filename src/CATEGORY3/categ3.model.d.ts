@@ -2,7 +2,7 @@ export interface categ3DTO {
     id: number;
     category: string;
     type: string;
-    price: int;
+    price: number;
 }
 
 export interface categ3CreationDTO {

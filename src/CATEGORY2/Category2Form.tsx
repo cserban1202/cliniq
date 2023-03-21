@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import TextField from "../forms/TextField";
 import DateField from "../forms/DateField";
 import ImageField from "../forms/ImageField";
+import React from "react";
 
 export default function Category2Form(props: category2FormProps){
     return (
@@ -13,7 +14,7 @@ export default function Category2Form(props: category2FormProps){
         initialValues={props.model}
         onSubmit={props.onSubmit}
         validationSchema={Yup.object({
-            name: Yup.string().required('This field is required').firstLetterUpperCase(),
+            name: Yup.string().required('This field is required'),//.firstLetterUpperCase(),
             consultationDate: Yup.date().required('This field is required').nullable(),
             // picture: Yup.mixed().required()
         })}
@@ -21,7 +22,7 @@ export default function Category2Form(props: category2FormProps){
             {(formikProps) => (
                 <Form>
                     
-                    <TextField displayName="Name" field="name" />
+                    <TextField displayName="Review" field="name" />
                     <DateField displayName="Consultation Date" field="consultationDate" />
                     <ImageField displayName="Picture" field="picture" 
                         imageURL={props.model.pictureURL} 

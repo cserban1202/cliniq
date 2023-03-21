@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams } from "react-router-dom"
 import { transform } from "typescript";
 import { categoriesDTO } from "../CATEGORY1/categories.model";

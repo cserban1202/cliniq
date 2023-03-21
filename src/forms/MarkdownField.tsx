@@ -12,6 +12,7 @@ export default function MarkdownField(props: markdownFieldProps) {
                     <Field name={props.field} as="textarea" className="form-textarea" />
                 </div>
             </div>
+            
             {/* <div>
                 <label>{props.displayName} (preview):</label>
                 <div className="markdown-container">

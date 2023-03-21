@@ -1,0 +1,25 @@
+.time-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.time-slot {
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.time-slot:hover {
+  background-color: #f7f7f7;
+}
+
+.selected {
+  background-color: #ddd;
+}
+.time-slot.disabled {
+  cursor: not-allowed;
+  color: #ccc;
+}

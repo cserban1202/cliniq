@@ -1,3 +1,4 @@
+import React from "react";
 import { cardDTO } from "./card.model.d";
 import css from'./IndividualCard.module.css';
 

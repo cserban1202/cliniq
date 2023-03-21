@@ -4,6 +4,7 @@ import Button from "../Utils/Button"
 import * as Yup from 'yup';
 import TextField from "../forms/TextField";
 import { categoriesCreationDTO } from "./categories.model";
+import React from "react";
 
 //NUMELE PROCEDURII PE CARE VREI SA O VEZI IN CLINCI SI NU ESTE DISPONIBILA
 // <-------------SUGGESTIONS OF PROCEDURES---------------->
@@ -13,19 +14,11 @@ export default function CategoriesForm(props: categoriesFormProps) {
         onSubmit = {props.onSubmit}
         validationSchema = {Yup.object({
             name: Yup.string().required('This field is mandatory!')
-            
-            .firstLetterUpperCase()
         })}
         >
-            {(formikProps) => ( //stop letting the user to send the form twice with the 
-                                // dissabled property from the button
-                                //!!!!NO MATTER HOW MANY TIMES THE BUTTON IS CLICKED,
-                                //THE NAME IS TAKE ONLY ONCE!!!!!!
-                                //--> Button: disabled -> isSubmitting is disabling the button
-                                //                          button is getting enabled dupa ce se termina
-                                //                          cele 3 secunde 
+            {(formikProps) => ( 
                 <Form >
-                    <TextField field ="name" displayName ="Here we go"></TextField>
+                    <TextField field ="name" displayName =""></TextField>
                     <Button disabled = {formikProps.isSubmitting} type = 'submit'>Add</Button>
                     <Link className = "btn btn-secondary" to = "/Categories">Cancel</Link>
                 

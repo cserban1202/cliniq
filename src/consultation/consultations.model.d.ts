@@ -4,4 +4,5 @@ interface consultationCreationDTO {
     picture?: File;
     pictureURL?: string;
     description?: string;
+    time: string;
 }

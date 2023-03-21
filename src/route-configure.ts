@@ -12,6 +12,10 @@ import CreateCateg3 from "./CATEGORY3/CreateCateg3";
 import EditCateg3 from "./CATEGORY3/EditCateg3";
 import IndexCategory3 from "./CATEGORY3/IndexCategory3";
 import RedirectToLanding from "./Utils/RedirectToLanding";
+import Register from "./auth/Register";
+import Login from "./auth/Login";
+import IndexUsers from "./auth/IndexUsers";
+import Faq from "./Category5/Faq";
 
 const routes = [
     {path: '/Categories', component: IndexCategory, exact: true, isClient: true},
@@ -22,13 +26,19 @@ const routes = [
     {path: '/CATEGORY2/create', component: CreateCateg2, isClient: true},
     {path: '/CATEGORY2/edit/:id(\\d+)', component: EditCateg2, isClient: true},
 
-    {path: '/CATEGORY3', component: IndexCategory3, exact: true},
+    {path: '/CATEGORY3', component: IndexCategory3, exact: true,isClient: true},
     {path: '/CATEGORY3/create', component: CreateCateg3, isClient: true},
     {path: '/CATEGORY3/edit/:id(\\d+)', component: EditCateg3, isClient: true},
 
     {path: '/cards/create', component: CreateCard},
     {path: '/cards/edit/:id(\\d+)', component: EditCard},
     {path: '/cards/filter', component: FilterCards},
+
+    {path: '/register', component: Register},
+    {path: '/login', component: Login},
+    {path: '/users', component: IndexUsers},
+
+    {path: '/FAQ', component: Faq,exact: true,isClient: true},
 
     {path: "/", component: LandingPage, exact:true},
     {path: '*', component: RedirectToLanding}

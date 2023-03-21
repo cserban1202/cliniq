@@ -1,0 +1,5 @@
+.time-slot.disabled {
+    cursor: not-allowed;
+    color: #ccc;
+  }
+  

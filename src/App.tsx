@@ -10,47 +10,56 @@ import IndexCategory from './CATEGORY1/IndexCategory';
 import configureValidations from './Validations';
 import { claim } from './auth/auth.models';
 import AuthenticationContext from './auth/AuthenticationContext';
+import React from 'react';
+import { getClaims } from './auth/handlerJWT';
+import configureInterceptor from './Utils/httpInterceptors';
+import 'typeface-roboto';
 
 configureValidations();
+configureInterceptor();
 
 
 function App() {
   
-  const [claims, setClaims] = useState<claim[]>([
-    {name: 'email', value : 'cristi@yahoo.com'}, 
-    {name: 'role', value : 'client'} // client, admin, etc
-  ]);
+   //{name: 'email', value : 'cristi@yahoo.com'}, 
+    //{name: 'role', value : 'client'} // client, admin, etc
+  const [claims, setClaims] = useState<claim[]>([]);
 
+  const styles = {
+    fontFamily: 'Roboto'
+  };
+
+  useEffect(() => {
+    setClaims(getClaims())
+  }, [])
 
   function isClient() {
-    return claims.findIndex(claim => claim.name === 'role' && claim.value === 'client') > -1; 
+    const token = localStorage.getItem('token');
+    return !!token; // return true if token exists (i.e. client is authenticated), false otherwise
   }
 
+
   return (
-  
     <BrowserRouter>
     <AuthenticationContext.Provider value={{claims, update: setClaims}}>
-      
-    
+      <div style={styles}>
       <Menu /> 
           <div className="App">
             <Switch>
               {routes.map(route => 
               <Route key ={route.path} path={route.path} exact = {route.exact}>
-                {route.isClient && !isClient() ? 
-                <>
+                {route.isClient && !isClient() ? <>
                   You're not allowed to see this page.
-                </> : <route.component />}
-                
+                </> :  <><route.component /> </>}
               </Route>)}
             </Switch>
           </div>
-          <footer className='bd-footer py-5 mt-5 bg-light'>
+          <footer className='bd-footer py-4 mt-2 bg-light'>
             <div className='container'>
-                Clinic {new Date().getFullYear().toString()}
+                CLINIQUE {new Date().getFullYear().toString()}
             </div>
-
           </footer>
+          </div>
           </AuthenticationContext.Provider>
       </BrowserRouter>
   

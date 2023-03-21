@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import Authorized from "../auth/Authorized";
 import { urlCategories2 } from "../endpoints";
@@ -22,9 +23,10 @@ export default function IndexCateg2() {
                     </tr>
                 </thead>
                     <tbody>
-                        <Authorized 
-                        role = "client"
-                        authorized={<> 
+                        {/* <Authorized 
+                       //role = "client"
+                        authorized={ */}
+                        <> 
                         {categ2?.map(categ2 =><tr key ={categ2.id}>
                             {/* <td>
                                 {buttons(`categ2/edit/${categ2.id}`, categ2.id)}
@@ -33,8 +35,8 @@ export default function IndexCateg2() {
                                 {categ2.name}
                             </td>
                         </tr>)}
-                        </>}
-                        />
+                        </>
+                        
                     </tbody>
                 
             </>}
@@ -42,7 +44,7 @@ export default function IndexCateg2() {
     )
 }
 
-
+//STERGI AUTHORIZED MERGE!!!!!!!!!!!!!
 //TITLE FOR PAGE 1 - CATEG 1 => SHOULD BE CHANGED TO THE ACTUAL NAME!!!!!!!!!!!!!
 
 // CATEGORY 2 =  ACTORS
