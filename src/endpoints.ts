@@ -6,3 +6,4 @@ export const urlCategories4 = `${baseURL}/cards`; // ENDPOINTUL DIN VISUAL STUDI
 export const urlAccounts = `${baseURL}/accounts`; // ENDPOINTUL DIN VISUAL STUDIO
 export const urlDoctors = `${baseURL}/doctors`; // ENDPOINTUL DIN VISUAL STUDIO
 export const urlConsultation = `${baseURL}/consultation`; // ENDPOINTUL DIN VISUAL STUDIO
+export const urlExamination = `${baseURL}/examination`; // ENDPOINTUL DIN VISUAL STUDIO

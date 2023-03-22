@@ -16,6 +16,7 @@ import Register from "./auth/Register";
 import Login from "./auth/Login";
 import IndexUsers from "./auth/IndexUsers";
 import Faq from "./Category5/Faq";
+import ExaminationsList from "./ExaminationsList/ExaminationsList";
 
 const routes = [
     {path: '/Categories', component: IndexCategory, exact: true, isClient: true},
@@ -33,6 +34,8 @@ const routes = [
     {path: '/cards/create', component: CreateCard},
     {path: '/cards/edit/:id(\\d+)', component: EditCard},
     {path: '/cards/filter', component: FilterCards},
+
+    {path: '/examinationlist', component: ExaminationsList, exact: true,isClient: true},
 
     {path: '/register', component: Register},
     {path: '/login', component: Login},

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ConsultationForm from "./ConsultationForm";
 import axios from "axios";
-import { urlCategories4, urlConsultation } from "../endpoints";
+import { urlCategories4, urlConsultation, urlExamination } from "../endpoints";
 import React from "react";
 
 
@@ -13,7 +13,7 @@ export default function CreateCard() {
     
       async function create(category: consultationCreationDTO) {
         try {
-          await axios.post(urlConsultation, category);
+          await axios.post(urlExamination, category);
           history.push("/");
         } catch (error: any) {
           if (error && error.response) {
@@ -30,7 +30,7 @@ export default function CreateCard() {
           model={{email: '', name: '', wantedDate: undefined, time: ''}}
           onSubmit={async (values, actions, time) => {
             const category = { ...values, time };
-           //await create(category);
+           await create(category);
             console.log(category);
           }}
           

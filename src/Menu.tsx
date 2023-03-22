@@ -29,16 +29,22 @@ export default function Menu() {
                                     FILTER 
                                 </NavLink>
                             </li> */}
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/cards/create">
-                Ask for Examination{/* CREATE A CARD - CONSULTATION */}
-              </NavLink>
-            </li>
 
             <Authorized
               //role = "client" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
               authorized={
                 <>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/cards/create">
+                      Ask for Examination{/* CREATE A CARD - CONSULTATION */}
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="examinationlist">
+                      My Examinations {/* CREATE A CARD - CONSULTATION */}
+                    </NavLink>
+                  </li>
+
                   <li className="nav-item">
                     <NavLink className="nav-link" to="/CATEGORY3">
                       Price List {/* CATEG3 - PRICE LIST DONE */}

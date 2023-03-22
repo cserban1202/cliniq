@@ -1,4 +1,5 @@
 interface consultationCreationDTO {
+    id?: number;
     email: string;
     name: string;
     wantedDate: date;
@@ -7,3 +8,4 @@ interface consultationCreationDTO {
     description?: string;
     time: string;
 }
+
