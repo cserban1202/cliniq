@@ -1,5 +1,7 @@
 .time-slot.disabled {
-    cursor: not-allowed;
-    color: #ccc;
-  }
-  
+  cursor: not-allowed;
+  color: #ccc;
+}
+/* .selected {
+  background-color: rgb(213, 134, 134);
+} */
