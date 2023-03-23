@@ -2,9 +2,10 @@
     display: flex;
 }
 .form-markdown textarea {
-    width: 250px;
-    height: 300px;
+    width: 1000px;
+    height: 150px;
     margin-right: 15px;
+    border-radius: 15px;
 }
 .form-markdown .markdown-container {
     border: 1px solid black;

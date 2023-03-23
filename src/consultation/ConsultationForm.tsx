@@ -57,43 +57,6 @@ export default function ConsultationForm(props: consultationFormProps) {
     }${day}`;
   };
 
-  // const handleSubmit = async (
-  //   values: consultationCreationDTO,
-  //   actions: FormikHelpers<consultationCreationDTO>
-  // ) => {
-  //   const formattedDate = formatDate(values.wantedDate);
-
-  //   const currentTimestamp = Date.now();
-  //   const lastTimestamp = localStorage.getItem("lastSelectionTimestamp");
-  //   const lastSelectedValue = localStorage.getItem("lastSelectedValue");
-
-  //   if (
-  //     !lastTimestamp ||
-  //     currentTimestamp - Number(lastTimestamp) >= 86400000 ||
-  //     selectedTime !== lastSelectedValue
-  //   ) {
-  //     // Allow submission
-  //     localStorage.setItem("lastSelectionTimestamp", String(currentTimestamp));
-  //     localStorage.setItem("lastSelectedValue", selectedTime);
-  //     await props.onSubmit(
-  //       { ...values, wantedDate: formattedDate },
-  //       actions,
-  //       selectedTime
-  //     );
-  //     setSelectedTime("");
-  //     setTimeout(() => {
-  //       setSelectedTime("");
-  //     }, 86400000); // hide the selected time slot for 24 hours
-  //   } else if (selectedTime === lastSelectedValue) {
-  //     // Prevent submission
-  //     actions.setSubmitting(false);
-  //     alert("You have already selected this time slot");
-  //   } else {
-  //     // Prevent submission
-  //     actions.setSubmitting(false);
-  //     alert("You can select this value again in 24 hours");
-  //   }
-  // };
   const handleSubmit = async (
     values: consultationCreationDTO,
     actions: FormikHelpers<consultationCreationDTO>
@@ -135,45 +98,47 @@ export default function ConsultationForm(props: consultationFormProps) {
   };
 
   return (
-    <Formik
-      initialValues={props.model}
-      onSubmit={handleSubmit}
-      validationSchema={Yup.object({
-        name: Yup.string()
-          .required("This field is required")
-          .firstLetterUpperCase(),
-        wantedDate: Yup.date().nullable().required("This field is required"),
-        description: Yup.string().required("This field is required"),
-      })}
-    >
-      {(formikProps) => (
-        <Form>
-          <TextField displayName="Name" field="name" />
-          <Datefield
-            displayName="Wanted date for consultation"
-            field="wantedDate"
-          />
-          <MarkdownField
-            displayName="Brief description of the problem"
-            field="description"
-          />
-          <DoctorTable
-            doctors={doctors}
-            selectedTime={selectedTime}
-            onTimeSlotClick={setSelectedTime}
-          />
-          <Button
-            disabled={!selectedTime || formikProps.isSubmitting}
-            type="submit"
-          >
-            Ask for a consultation
-          </Button>
-          <Link to="/" className="btn btn-secondary">
-            Cancel
-          </Link>
-        </Form>
-      )}
-    </Formik>
+    <div className="container-xl mt-5 pb-5">
+      <Formik
+        initialValues={props.model}
+        onSubmit={handleSubmit}
+        validationSchema={Yup.object({
+          name: Yup.string()
+            .required("This field is required")
+            .firstLetterUpperCase(),
+          wantedDate: Yup.date().nullable().required("This field is required"),
+          description: Yup.string().required("This field is required"),
+        })}
+      >
+        {(formikProps) => (
+          <Form>
+            <TextField displayName="Name" field="name" />
+            <Datefield
+              displayName="Wanted date for consultation"
+              field="wantedDate"
+            />
+            <MarkdownField
+              displayName="Brief description of the problem"
+              field="description"
+            />
+            <DoctorTable
+              doctors={doctors}
+              selectedTime={selectedTime}
+              onTimeSlotClick={setSelectedTime}
+            />
+            <Button
+              disabled={!selectedTime || formikProps.isSubmitting}
+              type="submit"
+            >
+              Ask for a consultation
+            </Button>
+            <Link to="/" className="btn btn-secondary">
+              Cancel
+            </Link>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 }
 
@@ -182,7 +147,7 @@ interface consultationFormProps {
   onSubmit(
     values: consultationCreationDTO,
     action: FormikHelpers<consultationCreationDTO>,
-    selectedTime: string,
+    selectedTime: string
   ): void;
 }
 

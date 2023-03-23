@@ -4,7 +4,9 @@ import AuthencationContext from "../auth/AuthenticationContext";
 import { urlExamination } from "../endpoints";
 
 function ExaminationsList() {
-  const [examinations, setExaminations] = useState<consultationCreationDTO[]>([]);
+  const [examinations, setExaminations] = useState<consultationCreationDTO[]>(
+    []
+  );
   const { claims } = useContext(AuthencationContext);
 
   useEffect(() => {
@@ -33,8 +35,8 @@ function ExaminationsList() {
   };
 
   return (
-    <div>
-      <h1>My Examinations</h1>
+    <div className="container-xl mt-5 pb-5">
+      <h3>My Examinations</h3>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -56,7 +58,7 @@ function ExaminationsList() {
                 </button>
               </td>
               <td>{examination.name}</td>
-              <td>{examination.wantedDate}</td>
+              <td>{new Date(examination.wantedDate).toLocaleDateString()}</td>
               <td>{examination.time}</td>
             </tr>
           ))}

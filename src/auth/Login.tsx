@@ -9,39 +9,38 @@ import AuthencationContext from "./AuthenticationContext";
 import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  const [error, setErrors] = useState<string[]>([]);
+  const { update } = useContext(AuthencationContext);
+  const history = useHistory();
 
-    const [error, setErrors] = useState<string[]>([]);
-    const {update} = useContext(AuthencationContext);
-    const history = useHistory();
-
-    async function login(credentials: userCredentials){
-        try {
-            setErrors([]); // clear errors!!!!!!!!!!!
-            const response = await axios
-            .post<authenticationResponse>(`${urlAccounts}/login`, credentials);
-            saveToken(response.data);
-            update(getClaims()); // update context
-            history.push("/"); // redirect to home page
-            console.log(response.data);
-        }
-        catch (error: any) {
-            if (error && error.response){
-                setErrors(error.response.data);
-            }
-        }
+  async function login(credentials: userCredentials) {
+    try {
+      setErrors([]); // clear errors!!!!!!!!!!!
+      const response = await axios.post<authenticationResponse>(
+        `${urlAccounts}/login`,
+        credentials
+      );
+      saveToken(response.data);
+      update(getClaims()); // update context
+      history.push("/"); // redirect to home page
+      console.log(response.data);
+    } catch (error: any) {
+      if (error && error.response) {
+        setErrors(error.response.data);
+      }
     }
+  }
 
-
-    return (
-        <>
-
+  return (
+    <>
+      <div className="container-xl mt-5 pb-5">
         <h3>Login</h3>
-        <DisplayErrors errors={error}/>
-        <AuthForm 
-            model = {{email: "", password: ""}}
-            onSubmit={async values => await login(values)}
+        <DisplayErrors errors={error} />
+        <AuthForm
+          model={{ email: "", password: "" }}
+          onSubmit={async (values) => await login(values)}
         />
-
-        </>
-    )
+      </div>
+    </>
+  );
 }

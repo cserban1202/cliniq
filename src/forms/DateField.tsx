@@ -2,6 +2,8 @@ import { useFormikContext } from "formik";
 
 export default function DateField(props: dateFieldProps){
     const {values, validateForm, touched, errors} = useFormikContext<any>();
+    const currentDate = new Date().toISOString().substr(0, 10); // Get current date in ISO format
+
     return(
         <div className="mb-3">
             <label htmlFor={props.field}>{props.displayName}</label>
@@ -14,6 +16,7 @@ export default function DateField(props: dateFieldProps){
                     values[props.field] = date;
                     validateForm();
                 }}
+                min={currentDate} // Set min attribute to current date
                 />
             {touched[props.field] && errors[props.field] ? 
             <div className="text-danger">{errors[props.field]?.toString()}</div> : null}

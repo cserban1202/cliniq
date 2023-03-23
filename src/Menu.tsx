@@ -75,17 +75,17 @@ export default function Menu() {
               }
             />
           </ul>
-          <div className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around align-items-center">
             <Authorized
               authorized={
                 <>
-                  <span className="nav-link">Hello, {getUserEmail()}</span>
+                  <span className="nav-link mr-2">Hello, {getUserEmail()}</span>
                   <Button
                     onClick={() => {
                       logout();
                       update([]);
                     }}
-                    className="nav-link btn btn-link"
+                    className="nav-link btn btn-link p-2"
                   >
                     Log out
                   </Button>
@@ -93,10 +93,18 @@ export default function Menu() {
               }
               notAuthorized={
                 <>
-                  <NavLink to="/register" className="nav-link btn btn-link">
+                  <NavLink
+                    to="/register"
+                    className="nav-link btn btn-link"
+                    style={{ marginRight: "10px" }}
+                  >
                     Register
                   </NavLink>
-                  <NavLink to="/login" className="nav-link btn btn-link">
+                  <NavLink
+                    to="/login"
+                    className="nav-link btn btn-link"
+                    style={{ marginRight: "10px" }}
+                  >
                     Login
                   </NavLink>
                 </>

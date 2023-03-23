@@ -5,43 +5,43 @@ import { urlCategories2 } from "../endpoints";
 import IndexEntity from "../Utils/IndexEntity";
 import { categ2DTO } from "./categ2.model";
 
-
 //INDEX FOR REVIEW PAGE
 export default function IndexCateg2() {
-    return (
-        <IndexEntity<categ2DTO>
-            url={urlCategories2}
-            createURL="/CATEGORY2/create"
-            title="CATEGORY2 - REVIEWS"
-            entityName="a review"
-        >
-            {(categ2, buttons) => 
-            <>
-                <thead>
-                    <tr>
-                        <th>------------REVIEWS------------</th>
-                    </tr>
-                </thead>
-                    <tbody>
-                        {/* <Authorized 
+  return (
+    <div className="container-xl mt-5 pb-5">
+      <IndexEntity<categ2DTO>
+        url={urlCategories2}
+        createURL="/CATEGORY2/create"
+        title="REVIEWS"
+        entityName="a review"
+      >
+        {(categ2, buttons) => (
+          <>
+            <thead>
+              <tr>
+                <th>REVIEWS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* <Authorized 
                        //role = "client"
                         authorized={ */}
-                        <> 
-                        {categ2?.map(categ2 =><tr key ={categ2.id}>
-                            {/* <td>
+              <>
+                {categ2?.map((categ2) => (
+                  <tr key={categ2.id}>
+                    {/* <td>
                                 {buttons(`categ2/edit/${categ2.id}`, categ2.id)}
                             </td> */}
-                            <td>
-                                {categ2.name}
-                            </td>
-                        </tr>)}
-                        </>
-                        
-                    </tbody>
-                
-            </>}
-        </IndexEntity>
-    )
+                    <td>{categ2.name}</td>
+                  </tr>
+                ))}
+              </>
+            </tbody>
+          </>
+        )}
+      </IndexEntity>
+    </div>
+  );
 }
 
 //STERGI AUTHORIZED MERGE!!!!!!!!!!!!!

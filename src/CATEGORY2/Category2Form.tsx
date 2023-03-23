@@ -28,7 +28,7 @@ export default function Category2Form(props: category2FormProps){
                         imageURL={props.model.pictureURL} 
                     />
 
-                    <Button disabled = {formikProps.isSubmitting} type = 'submit'>Save Changes</Button>
+                    <Button disabled = {formikProps.isSubmitting}  className="btn btn-info" type = 'submit'>Save Changes</Button>
                     <Link className = "btn btn-secondary" to = "/Categories">Cancel</Link>
                 </Form>
             )}
