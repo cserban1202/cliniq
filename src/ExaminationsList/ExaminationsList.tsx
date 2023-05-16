@@ -9,19 +9,29 @@ function ExaminationsList() {
   );
   const { claims } = useContext(AuthencationContext);
 
-  useEffect(() => {
-    const userEmail = claims.find((x) => x.name === "email")?.value;
-    axios
-      .get(urlExamination)
-      .then((response: AxiosResponse<consultationCreationDTO[]>) => {
-        // Filter the response to only include examinations created by the current user
-        const filteredExaminations = response.data.filter(
-          (examination) => examination.email === userEmail
-        );
-        setExaminations(filteredExaminations);
-        console.log(response.data);
+ useEffect(() => {
+  const userEmail = claims.find((x) => x.name === "email")?.value;
+  axios
+    .get(urlExamination)
+    .then((response: AxiosResponse<consultationCreationDTO[]>) => {
+      // Check if the user is an admin
+      const isAdmin = userEmail === "admin@yahoo.com";
+
+      // Filter the response based on user role
+      const filteredExaminations = response.data.filter((examination) => {
+        // If the user is an admin, return all examinations
+        if (isAdmin) {
+          return true;
+        }
+        // Otherwise, only include examinations created by the current user
+        return examination.email === userEmail;
       });
-  }, [claims]);
+
+      setExaminations(filteredExaminations);
+      console.log(response.data);
+    });
+}, [claims]);
+
 
   const handleDelete = async (id: number) => {
     try {

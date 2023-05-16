@@ -57,6 +57,8 @@ export default function ConsultationForm(props: consultationFormProps) {
     }${day}`;
   };
 
+
+  
   const handleSubmit = async (
     values: consultationCreationDTO,
     actions: FormikHelpers<consultationCreationDTO>
@@ -64,11 +66,11 @@ export default function ConsultationForm(props: consultationFormProps) {
     const formattedDate = formatDate(values.wantedDate);
     const userEmail = getUserEmail();
     console.log(userEmail);
-
+  
     const currentTimestamp = Date.now();
     const lastTimestamp = localStorage.getItem("lastSelectionTimestamp");
     const lastSelectedValue = localStorage.getItem("lastSelectedValue");
-
+  
     if (
       !lastTimestamp ||
       currentTimestamp - Number(lastTimestamp) >= 86400000 ||
@@ -77,15 +79,21 @@ export default function ConsultationForm(props: consultationFormProps) {
       // Allow submission
       localStorage.setItem("lastSelectionTimestamp", String(currentTimestamp));
       localStorage.setItem("lastSelectedValue", selectedTime);
-      await props.onSubmit(
-        { ...values, wantedDate: formattedDate, email: userEmail },
-        actions,
-        selectedTime
-      );
-      setSelectedTime("");
-      setTimeout(() => {
+  
+      if (!values.description) {
+        actions.setSubmitting(false);
+        toast.error("Markdown field cannot be empty");
+      } else {
+        await props.onSubmit(
+          { ...values, wantedDate: formattedDate, email: userEmail },
+          actions,
+          selectedTime
+        );
         setSelectedTime("");
-      }, 86400000); // hide the selected time slot for 24 hours
+        setTimeout(() => {
+          setSelectedTime("");
+        }, 86400000); // hide the selected time slot for 24 hours
+      }
     } else if (selectedTime === lastSelectedValue) {
       // Prevent submission
       actions.setSubmitting(false);
@@ -96,9 +104,13 @@ export default function ConsultationForm(props: consultationFormProps) {
       alert("You can select this value again in 24 hours");
     }
   };
+  
+
+  
 
   return (
     <div className="container-xl mt-5 pb-5">
+      <ToastContainer />
       <Formik
         initialValues={props.model}
         onSubmit={handleSubmit}

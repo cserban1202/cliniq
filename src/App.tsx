@@ -40,6 +40,7 @@ function App() {
 
 
   return (
+    <div className='body'>
     <BrowserRouter>
     <AuthenticationContext.Provider value={{claims, update: setClaims}}>
       <div style={styles}>
@@ -49,7 +50,7 @@ function App() {
               {routes.map(route => 
               <Route key ={route.path} path={route.path} exact = {route.exact}>
                 {route.isClient && !isClient() ? <>
-                  You're not allowed to see this page.
+                  You're not allowed to see this page. Please log in.
                 </> :  <><route.component /> </>}
               </Route>)}
             </Switch>
@@ -62,7 +63,7 @@ function App() {
           </div>
           </AuthenticationContext.Provider>
       </BrowserRouter>
-  
+      </div>
   );
 }
 
