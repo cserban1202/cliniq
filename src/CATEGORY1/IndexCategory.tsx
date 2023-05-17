@@ -1,17 +1,14 @@
-import axios, { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { categoriesDTO } from "./categories.model";
 import { urlCategories } from "../endpoints";
-import GenericList from "../Utils/GenericList";
-import Button from "../Utils/Button";
-import Pagination from "../Utils/Pagination";
-import RecordsPerPageSelect from "../Utils/RecordsPerPageSelect";
-import customConfirm from "../Utils/customConfirm";
 import IndexEntity from "../Utils/IndexEntity";
-import React from "react";
+import { categoriesDTO } from "./categories.model";
+import AuthencationContext from "../auth/AuthenticationContext";
 
 export default function IndexCategory() {
+  const { claims } = useContext(AuthencationContext);
+  const userEmail = claims?.find((x) => x.name === "email")?.value;
+
   return (
     <div className="container-xl mt-5 pb-5">
       <IndexEntity<categoriesDTO>
@@ -32,7 +29,8 @@ export default function IndexCategory() {
               {categories?.map((category) => (
                 <tr key={category.id}>
                   <td>
-                    {/* {buttons(`categories/edit/${category.id}`, category.id)} */}
+                    {userEmail === "admin@yahoo.com" &&
+                      buttons(`categories/edit/${category.id}`, category.id)}
                   </td>
                   <td>{category.name}</td>
                 </tr>

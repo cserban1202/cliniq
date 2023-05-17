@@ -48,9 +48,9 @@ export default function IndexCategory<T>(props: indexEntityProps<T>) {
 
   const buttons = (editUrl: string, id: number) => (
     <>
-      <Link className="btn btn-success" to={editUrl}>
+      {/* <Link className="btn btn-success" to={editUrl}>
         Edit
-      </Link>
+      </Link> */}
       <Button
         onClick={() => customConfirm(() => deleteEntity(id))}
         className="btn btn-danger"
