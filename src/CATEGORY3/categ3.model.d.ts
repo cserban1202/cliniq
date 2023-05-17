@@ -5,6 +5,13 @@ export interface categ3DTO {
     price: number;
 }
 
+export interface categ3creation2DTO {
+    id: number;
+    category: string;
+    type: string;
+    price: number;
+}
+
 export interface categ3CreationDTO {
     name: string;
     consultationDate?: Date;
