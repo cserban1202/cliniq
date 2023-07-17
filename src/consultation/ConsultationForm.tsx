@@ -17,6 +17,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthencationContext from "../auth/AuthenticationContext";
 
+interface consultationFormProps {
+  model: consultationCreationDTO;
+  onSubmit(
+    values: consultationCreationDTO,
+    action: FormikHelpers<consultationCreationDTO>,
+    selectedTime: string
+  ): void;
+}
+
 export default function ConsultationForm(props: consultationFormProps) {
   const [doctors, setDoctors] = useState<doctorsDTO[]>([]);
   const [selectedTime, setSelectedTime] = useState<string>(() => {
@@ -30,6 +39,8 @@ export default function ConsultationForm(props: consultationFormProps) {
   function getUserEmail(): string {
     return claims.filter((x) => x.name === "email")[0]?.value;
   }
+
+
 
   useEffect(() => {
     axios.get(urlDoctors).then((response: AxiosResponse<doctorsDTO[]>) => {
@@ -57,8 +68,8 @@ export default function ConsultationForm(props: consultationFormProps) {
     }${day}`;
   };
 
-
   
+
   const handleSubmit = async (
     values: consultationCreationDTO,
     actions: FormikHelpers<consultationCreationDTO>
@@ -66,11 +77,11 @@ export default function ConsultationForm(props: consultationFormProps) {
     const formattedDate = formatDate(values.wantedDate);
     const userEmail = getUserEmail();
     console.log(userEmail);
-  
+
     const currentTimestamp = Date.now();
     const lastTimestamp = localStorage.getItem("lastSelectionTimestamp");
     const lastSelectedValue = localStorage.getItem("lastSelectedValue");
-  
+
     if (
       !lastTimestamp ||
       currentTimestamp - Number(lastTimestamp) >= 86400000 ||
@@ -79,9 +90,9 @@ export default function ConsultationForm(props: consultationFormProps) {
       // Allow submission
       localStorage.setItem("lastSelectionTimestamp", String(currentTimestamp));
       localStorage.setItem("lastSelectedValue", selectedTime);
-  
+
       if (!values.description) {
-        actions.setSubmitting(false);
+        // No need to call actions.setSubmitting(false); here
         toast.error("Markdown field cannot be empty");
       } else {
         await props.onSubmit(
@@ -104,9 +115,6 @@ export default function ConsultationForm(props: consultationFormProps) {
       alert("You can select this value again in 24 hours");
     }
   };
-  
-
-  
 
   return (
     <div className="container-xl mt-5 pb-5">
@@ -133,17 +141,20 @@ export default function ConsultationForm(props: consultationFormProps) {
               displayName="Brief description of the problem"
               field="description"
             />
+            <p>In other for the form to be submitted, the fields must be completed.</p>
             <DoctorTable
               doctors={doctors}
               selectedTime={selectedTime}
               onTimeSlotClick={setSelectedTime}
             />
-            <Button
-              disabled={!selectedTime || formikProps.isSubmitting}
-              type="submit"
-            >
-              Ask for a consultation
-            </Button>
+            {formikProps.values.description && ( // Check if description is not empty
+              <Button
+                disabled={!selectedTime || formikProps.isSubmitting}
+                type="submit"
+              >
+                Ask for a consultation
+              </Button>
+            )}
             <Link to="/" className="btn btn-secondary">
               Cancel
             </Link>
@@ -154,14 +165,7 @@ export default function ConsultationForm(props: consultationFormProps) {
   );
 }
 
-interface consultationFormProps {
-  model: consultationCreationDTO;
-  onSubmit(
-    values: consultationCreationDTO,
-    action: FormikHelpers<consultationCreationDTO>,
-    selectedTime: string
-  ): void;
-}
+
 
 // const handleSubmit = async (
 //   values: consultationCreationDTO,

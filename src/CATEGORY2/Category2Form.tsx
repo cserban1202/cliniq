@@ -7,6 +7,7 @@ import TextField from "../forms/TextField";
 import DateField from "../forms/DateField";
 import ImageField from "../forms/ImageField";
 import React from "react";
+import DateField2 from "../forms/DateField2";
 
 export default function Category2Form(props: category2FormProps){
     return (
@@ -23,7 +24,7 @@ export default function Category2Form(props: category2FormProps){
                 <Form>
                     
                     <TextField displayName="Review" field="name" />
-                    <DateField displayName="Consultation Date" field="consultationDate" />
+                    <DateField2 displayName="Consultation Date" field="consultationDate" />
                     <ImageField displayName="Picture" field="picture" 
                         imageURL={props.model.pictureURL} 
                     />
