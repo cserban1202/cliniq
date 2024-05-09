@@ -20,7 +20,10 @@ export default function CreateCateg2() {
       const formData = convertCateg2ToFormData(category2);
 
       await axios({
+
+
         method: "POST",
+
         url: urlCategories2,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },

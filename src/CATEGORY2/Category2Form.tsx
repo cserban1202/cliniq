@@ -13,7 +13,10 @@ export default function Category2Form(props: category2FormProps){
     return (
         <Formik
         initialValues={props.model}
+
+        //on submit 
         onSubmit={props.onSubmit}
+
         validationSchema={Yup.object({
             name: Yup.string().required('This field is required'),//.firstLetterUpperCase(),
             consultationDate: Yup.date().required('This field is required').nullable(),
@@ -24,7 +27,9 @@ export default function Category2Form(props: category2FormProps){
                 <Form>
                     
                     <TextField displayName="Review" field="name" />
+
                     <DateField2 displayName="Consultation Date" field="consultationDate" />
+                    
                     <ImageField displayName="Picture" field="picture" 
                         imageURL={props.model.pictureURL} 
                     />
